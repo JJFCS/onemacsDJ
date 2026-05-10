@@ -42,7 +42,7 @@
 		(add-to-list    'exec-path "/opt/homebrew/bin")
 	(setq recentf-save-file "~/.emacs.d/onemacs-cache/recentf")
 	(setq savehist-file     "~/.emacs.d/onemacs-cache/history")
-	(setq auto-save-default nil) (setq auto-save-list-file-prefix nil) (setq make-backup-files nil)
+	(setq auto-save-default nil) (setq auto-save-list-file-prefix nil)
 	(setq-default truncate-lines t)
 	(setq inhibit-splash-screen  t)
 	(setq display-line-numbers-type 'relative) (setq insert-directory-program "gls")

@@ -14,6 +14,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	(savehist-mode 1)  ;; To del M-x history navigate to onemacs-cache and delete the "history" file
+	(setq backup-directory-alist '(("." . "~/.emacs.d/onemacs-cache/backups")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package marginalia :ensure t  :init  (marginalia-mode)  (setq marginalia-align 'right))
