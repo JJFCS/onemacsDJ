@@ -7,15 +7,17 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	;; a very simple LSP setup (for now perhaps..)
+	;; remove if you do not want to use LSP
 
 	(use-package eglot
-		:hook (
-				(python-mode . eglot-ensure)
-				(c-mode      . eglot-ensure)
+		:hook
+		(
+			(python-mode . eglot-ensure)
+			(c-mode      . eglot-ensure)
 		)
 
 		:config	
+		(setq eglot-ignored-server-capabilities '(:inlayHintProvider))
 
 		(add-to-list 'eglot-server-programs
 					 '(python-mode . ("basedpyright-langserver" "--stdio")
