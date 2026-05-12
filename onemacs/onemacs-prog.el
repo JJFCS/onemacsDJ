@@ -6,8 +6,9 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-	;; remove if you do not want to use LSP
+	;; dependencies
+	;; brew install basedpyright
+	;; brew install llvm
 
 	(use-package eglot
 		:hook
@@ -37,6 +38,7 @@
 		:custom (devdocs-data-dir (expand-file-name "onemacs-cache/devdocs" user-emacs-directory)
 	)
 	)
+
 	(use-package projectile :ensure t
 		:config
 		(setq projectile-known-projects-file "~/.emacs.d/onemacs-cache/projectile-bookmarks.eld")
