@@ -28,7 +28,6 @@
 		(require 'onemacs-convenience)
 		(require 'onemacs-prog)
 		(require 'onemacs-supreme)
-		(require 'onemacs-newmain)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

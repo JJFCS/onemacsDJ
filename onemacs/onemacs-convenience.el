@@ -2,6 +2,14 @@
 	;; -*- lexical-binding: t; -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(use-package indent-bars :ensure t
+		:hook (
+		(python-mode . indent-bars-mode)
+			)
+		)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package multiple-cursors :ensure t :defer t
 		:init (setq mc/list-file "~/.emacs.d/onemacs-cache/mc-lists.el")
 		:bind (
@@ -13,6 +21,33 @@
 	)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; TODO packages to include
+;; - expand region
+;; - iedit
+;; - icicles
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(use-package move-text
+
+		:ensure t
+		:bind (
+			("M-<down>" . move-text-down)
+			("M-<up>"   . move-text-up)
+		)
+
+		:config
+		;; Function advice to have Emacs re-indent the text in-and-around a text move
+		(defun my/move-text-indent-region-advice (&rest _ignored)
+			(let ((deactivate deactivate-mark))
+				(if (region-active-p)
+					(indent-region (region-beginning) (region-end))
+					(indent-region (line-beginning-position) (line-end-position)))
+				(setq deactivate-mark deactivate)))
+		(advice-add 'move-text-up :after #'my/move-text-indent-region-advice)
+		(advice-add 'move-text-down :after #'my/move-text-indent-region-advice)
+
+	)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package vundo   :ensure t :defer t)
