@@ -27,6 +27,7 @@
 		(require 'onemacs-completions)
 		(require 'onemacs-convenience)
 		(require 'onemacs-prog)
+		(require 'onemacs-func)
 		(require 'onemacs-supreme)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
