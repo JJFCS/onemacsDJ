@@ -26,24 +26,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(defun onncera-root-find () (interactive)
-		(let ((project-root (projectile-project-root))
-			)
-				(if project-root
-					(consult-find project-root)
-				(message "NOT IN A PROJECT ---> CREATE .GIT OR .PROJECTILE")
-		)
-		)
-		)
-	(defun onncera-root-grep () (interactive)
-		(let ((project-root (projectile-project-root))
-			)
-				(if project-root
-					(consult-grep project-root)
-				(message "NOT IN A PROJECT ---> CREATE .GIT OR .PROJECTILE")
-		)
-		)
-		)
 	(use-package vertico :ensure t :init (vertico-mode) (vertico-multiform-mode) :config
 		(require 'vertico-multiform)
 		(setq vertico-multiform-commands '(
@@ -69,48 +51,56 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; Typical workflow
+	;; - consult-ripgrep : "what you are looking for". Transient. once you select a line, other matches gone
+	;; - deadgrep		 : creates a dedicated persistent buffer for your search results using ripgrep
+	;; - wgrep			 : allows you to make a search result buffer editable
+
 	(use-package consult        :ensure t)
+	(use-package deadgrep       :ensure t)
+	(use-package wgrep          :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package company-box :ensure t)
-(use-package company 	 :ensure t
+	;; TODO should we use corfu and cape over company?
+	(use-package company-box    :ensure t)
+	(use-package company 	    :ensure t
 
-	:init
-	(global-company-mode 1)
+		:init
+		(global-company-mode 1)
 
-	:config
+		:config
 
-	(setq company-box-doc-delay 0.100)
+		(setq company-box-doc-delay 0.100)
 
-	(setq company-tooltip-annotation-padding 3) (setq company-tooltip-align-annotations t)
+		(setq company-tooltip-annotation-padding 3) (setq company-tooltip-align-annotations t)
 
-	(setq company-minimum-prefix-length 2)
-	(setq company-idle-delay 0.1)
+		(setq company-minimum-prefix-length 2)
+		(setq company-idle-delay 0.1)
 
-	(setq company-tooltip-minimum-width 100)
-	(setq company-tooltip-maximum-width 120)
+		(setq company-tooltip-minimum-width 100)
+		(setq company-tooltip-maximum-width 120)
 
-	;; (setq company-backends '(
+		;; (setq company-backends '(
 
-	;; 	company-abbrev
-	;; 	company-capf
-    ;;     company-clang
-    ;;     company-dabbrev
-    ;;     company-dabbrev-code
-    ;;     company-etags
-    ;;     company-gtags
-    ;;     company-files
-    ;;     company-keywords
-	;; 	company-yasnippet
+		;; 	company-abbrev
+		;; 	company-capf
+		;;  company-clang
+		;;  company-dabbrev
+		;;  company-dabbrev-code
+		;;  company-etags
+		;;  company-gtags
+		;;  company-files
+		;;  company-keywords
+		;; 	company-yasnippet
 
-	;; 	)
-    ;; )
+		;; 	)
+		;; )
 
-	:hook
-	(company-mode . company-box-mode)
+		:hook
+		(company-mode . company-box-mode)
 
-)
+	)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

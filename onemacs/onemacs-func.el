@@ -2,6 +2,27 @@
 	;; -*- lexical-binding: t; -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(defun onncera-root-find () (interactive)
+		(let ((project-root (projectile-project-root))
+			)
+				(if project-root
+					(consult-find project-root)
+				(message "NOT IN A PROJECT ---> CREATE .GIT OR .PROJECTILE")
+		)
+		)
+		)
+	(defun onncera-root-grep () (interactive)
+		(let ((project-root (projectile-project-root))
+			)
+				(if project-root
+					(consult-grep project-root)
+				(message "NOT IN A PROJECT ---> CREATE .GIT OR .PROJECTILE")
+		)
+		)
+		)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun smart-beginning-of-line ()
 		"moves cursor to first non-whitespace char or beg of line. alternates if called repeatedly"
 		(interactive)
