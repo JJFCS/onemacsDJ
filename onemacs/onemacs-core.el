@@ -6,6 +6,10 @@
 		(use-package modus-themes :ensure t) (use-package standard-themes :ensure t)
 		(use-package doric-themes :ensure t) (use-package doom-themes     :ensure t)
 
+		(use-package nvim-dark-theme
+		:vc (:url "https://github.com/mang-jin/emacs-theme-nvim-dark"
+		:rev :newest))
+
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
 							(load-theme 'doom-xcode t)
@@ -32,6 +36,9 @@
 	(expand-file-name "onemacs-cache/eln-cache/" user-emacs-directory)
 			)
 		)
+
+
+	(setq locate-command "mdfind")  ;; only for macOS - use spotlight for locate
 
 
 	(use-package emacs

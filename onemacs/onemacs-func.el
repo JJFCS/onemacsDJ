@@ -2,6 +2,15 @@
 	;; -*- lexical-binding: t; -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(defun onncera-highlight-todo ()
+		"bright red TODO keywords"
+		(font-lock-add-keywords nil '(("\\<TODO\\>" 0 '(:foreground "red" :weight bold) t)))
+	)
+
+	(add-hook 'prog-mode-hook #'onncera-highlight-todo)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun onncera-root-find () (interactive)
 		(let ((project-root (projectile-project-root))
 			)
