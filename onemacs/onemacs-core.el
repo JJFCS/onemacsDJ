@@ -38,9 +38,6 @@
 		)
 
 
-	(setq locate-command "mdfind")  ;; only for macOS - use spotlight for locate
-
-
 	(use-package emacs
 		:init
 		(add-hook 'emacs-startup-hook  'split-window-horizontally)
