@@ -26,11 +26,12 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		(require 'onemacs-core)
+		(require 'onemacs-func)
+		(require 'onemacs-prog)
 		(require 'onemacs-completions)
 		(require 'onemacs-convenience)
-		(require 'onemacs-prog)
-		(require 'onemacs-func)
 		(require 'onemacs-supreme)
+		(require 'onemacs-testing)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

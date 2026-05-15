@@ -3,10 +3,15 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun onncera-highlight-todo ()
-		"bright red TODO keywords"
-		(font-lock-add-keywords nil '(("\\<TODO\\>" 0 '(:foreground "red" :weight bold) t)))
+		"Highlight important annotation keywords."
+		(font-lock-add-keywords nil `((,(concat "\\<" (regexp-opt '("TODO" "FIXME" "BUG" "NOTE")) "\\>")
+			0
+			'(:foreground "red" :weight bold)
+			t
+				)
+			)
+		)
 	)
-
 	(add-hook 'prog-mode-hook #'onncera-highlight-todo)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -45,6 +50,27 @@
 
 	;; Remap the standard C-a binding
 	(global-set-key [remap move-beginning-of-line] 'smart-beginning-of-line)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; ONLY WHEN USING BERKELEY MONO FONT
+	(defun swap-display-table-chars (from-char to-char display-table)
+		(aset display-table from-char (vector to-char))
+		(aset display-table to-char (vector from-char))
+	)
+
+	(defun setup-swap-display-table ()
+		(let ((current-font (face-attribute 'default :family)) (dt  (or buffer-display-table  (make-display-table))))
+		(when (string= current-font "Berkeley Mono Trial")
+			(swap-display-table-chars ?# ?*  dt)
+			(swap-display-table-chars ?/ ?\\ dt)
+			(swap-display-table-chars ?\\ ?/ dt)
+			(setq buffer-display-table dt)))
+	)
+
+	(add-hook 'text-mode-hook 'setup-swap-display-table)
+	(add-hook 'prog-mode-hook 'setup-swap-display-table)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
