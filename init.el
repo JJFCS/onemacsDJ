@@ -30,7 +30,6 @@
 		(require 'onemacs-convenience)
 		(require 'onemacs-prog)
 		(require 'onemacs-func)
-		(require 'onemacs-os)
 		(require 'onemacs-supreme)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
