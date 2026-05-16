@@ -2,6 +2,35 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(defun onncera/apply-theme-overrides ()
+	"onncera's preferred face settings"
+		;; disable italics
+		(set-face-attribute 'font-lock-comment-face nil
+			:slant 'normal)
+		(set-face-attribute 'font-lock-doc-face nil
+			:slant 'normal)
+		(set-face-attribute 'italic nil
+			:slant 'normal)
+
+		;; disable bold
+		(set-face-attribute 'bold nil
+			:weight 'normal)
+
+		;; hl-line
+		(when (facep 'hl-line) (set-face-attribute 'hl-line nil :background "midnight blue"))
+	)
+
+	(defun onncera/theme-settings (&rest _)
+		"run theme overrides safely after theme changes"
+		(run-at-time 0 nil #'onncera/apply-theme-overrides)
+	)
+
+	(advice-add 'enable-theme :after #'onncera/theme-settings)
+	(advice-add 'load-theme   :after #'onncera/theme-settings)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun onncera-highlight-todo ()
 		"Highlight important annotation keywords."
 		(font-lock-add-keywords nil `((,(concat "\\<" (regexp-opt '("TODO" "FIXME" "BUG" "NOTE")) "\\>")
