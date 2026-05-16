@@ -2,6 +2,13 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	(defun onncera/remove-all-italics ()
+	"disable italics in all faces"
+	(dolist (face (face-list)) (when (face-attribute face :slant nil 'default) (set-face-attribute face nil :slant 'normal)))
+		)
+
+
 	(defun onncera/apply-theme-overrides ()
 	"onncera's preferred face settings"
 		;; disable italics
@@ -11,6 +18,7 @@
 			:slant 'normal)
 		(set-face-attribute 'italic nil
 			:slant 'normal)
+		(onncera/remove-all-italics)
 
 		;; disable bold
 		(set-face-attribute 'bold nil
@@ -19,6 +27,7 @@
 		;; hl-line
 		(when (facep 'hl-line) (set-face-attribute 'hl-line nil :background "midnight blue"))
 	)
+
 
 	(defun onncera/theme-settings (&rest _)
 		"run theme overrides safely after theme changes"
