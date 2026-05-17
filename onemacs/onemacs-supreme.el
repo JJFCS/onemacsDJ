@@ -25,9 +25,7 @@
 
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
-							;; (load-theme 'onncera-minimal-black t)  ;; fav == "doom-xcode"
-							;; (load-theme 'gruber-darker t)
-							(load-theme 'jetbrains-darcula t)
+							(load-theme 'nvim-dark t)
 
 						)
 		)
