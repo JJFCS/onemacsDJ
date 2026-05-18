@@ -1,3 +1,0 @@
-
-once you git clone this repo, make sure to rename it to ".emacs.d" in your home directory
-
