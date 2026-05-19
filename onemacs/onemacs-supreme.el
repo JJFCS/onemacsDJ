@@ -38,7 +38,9 @@
 	;; NOTE - The general veto settings apply to all themes. The non-general is only for nvim dark theme
 	(defconst onncera-colors
 		'(
-		(onncera-background    . "#060606")
+		(onncera-background    . "#14161B")
+		(onncera-whitespace1   . "#585858")
+		(onncera-whitespace2   . "#9E95C7")
 		(onncera-bghl          . "#36454F")
 		(onncera-blue          . "#78AFFF")
 		(onncera-grey          . "#8E9292")
@@ -96,6 +98,17 @@
 		(set-face-attribute 'font-lock-doc-face nil :foreground (onncera-color 'onncera-green-warmer))
 		(set-face-attribute 'cursor nil :background (onncera-color 'onncera-main))
 		(set-face-attribute 'helm-selection nil :background (onncera-color 'onncera-mode))
+
+		;; taken from https://github.com/rexim/gruber-darker-theme/blob/master/gruber-darker-theme.el
+		(set-face-attribute 'whitespace-space            nil :background (onncera-color 'onncera-background)  :foreground (onncera-color 'onncera-whitespace1))
+		(set-face-attribute 'whitespace-tab              nil :background (onncera-color 'onncera-background)  :foreground (onncera-color 'onncera-whitespace1))
+		(set-face-attribute 'whitespace-hspace           nil :background (onncera-color 'onncera-background)  :foreground (onncera-color 'onncera-whitespace2))
+		(set-face-attribute 'whitespace-line             nil :background (onncera-color 'onncera-whitespace2) :foreground (onncera-color 'onncera-red))
+		(set-face-attribute 'whitespace-newline          nil :background (onncera-color 'onncera-background)  :foreground (onncera-color 'onncera-whitespace2))
+		(set-face-attribute 'whitespace-trailing         nil :background (onncera-color 'onncera-red)         :foreground (onncera-color 'onncera-red))
+		(set-face-attribute 'whitespace-indentation      nil :background (onncera-color 'onncera-main)        :foreground (onncera-color 'onncera-red))
+		(set-face-attribute 'whitespace-space-after-tab  nil :background (onncera-color 'onncera-main)        :foreground (onncera-color 'onncera-main))
+		(set-face-attribute 'whitespace-space-before-tab nil :background (onncera-color 'onncera-brown)       :foreground (onncera-color 'onncera-brown))
 
 		;; hl-line
 		(when (facep 'hl-line) (set-face-attribute 'hl-line nil :background "midnight blue"))
