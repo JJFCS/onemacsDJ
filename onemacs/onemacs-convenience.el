@@ -2,16 +2,9 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Tip : once you press C-= once, just press either "=" to grow region or "-" to contract region
-	(use-package expand-region :ensure t :bind ("C-=" . er/expand-region))
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; an alternative to the built-in Emacs help that provides much more contextual information
 
 	(use-package helpful
-
 		:ensure t
 		:bind
 		([remap describe-command]  . helpful-command)
@@ -19,15 +12,7 @@
 		([remap describe-symbol]   . helpful-symbol)
 		([remap describe-function] . helpful-callable)
 		([remap describe-variable] . helpful-variable)
-
 	)
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; once in iedit mode, select a region & hit C-; again to restrict the search area to the region
-	;; Finish - by pressing C-; again
-	(use-package iedit         :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

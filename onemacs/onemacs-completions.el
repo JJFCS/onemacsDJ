@@ -12,11 +12,9 @@
 	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP, HELM-DESCBINDS
 	;;									helm-M-x-show-short-doc
 	(use-package helm-describe-modes :ensure t)
-	(use-package helm :ensure t
-			:bind (
-		([remap find-file] . helm-find-files) ([remap yank-pop] . helm-show-kill-ring)
-	)
-	)
+	(use-package helm :ensure t)
+	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
+	(define-key helm-map (kbd "C-j") #'helm-select-action)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	(savehist-mode 1)  ;; To del M-x history navigate to onemacs-cache and delete the "history" file
@@ -35,6 +33,7 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package vertico :ensure t :init (vertico-mode) (vertico-multiform-mode) :config
 		(require 'vertico-multiform)
+		(setq vertico-multiform-categories '((file (vertico-sort-function . onncera-vertico-find-file))))
 		(setq vertico-multiform-commands '(
 			(consult-find      buffer)
 			(consult-grep      buffer)
@@ -213,8 +212,6 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
-	(define-key helm-map (kbd "C-j") #'helm-select-action)
 	(require 'consult) (require 'embark)
 	(use-package emacs
 		:bind (("C-," . embark-act) ("C-." . embark-dwim))
