@@ -21,6 +21,7 @@
 	;; Python specific settings
 	(setq-default python-indent-offset 4)
 	(add-hook 'python-mode-hook #'whitespace-mode)
+	(add-hook 'python-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-python-tab)))
 	(use-package pyvenv     :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

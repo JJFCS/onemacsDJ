@@ -2,6 +2,27 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; when in devdocs can use mouse , anywhere else and we enable inhibit mouse mode
+	(add-hook
+		'window-selection-change-functions
+		(lambda (_frame)
+			(if (derived-mode-p 'devdocs-mode)
+				(inhibit-mouse-mode -1)
+				(inhibit-mouse-mode 1)))
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; tabs dwim - literally insert 4 spaces - not indentation
+	(defun onncera-python-tab ()
+		(interactive)
+		(insert "    ")
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun onncera-vertico-find-file (candidates)
 	"Sort CANDIDATES by dotfiles first, then dot-dirs, then files, then dirs (all in alphabetical order)"
 		;; speed up file operations during sorting.. emacs has a ton of background checks. Turn them off
