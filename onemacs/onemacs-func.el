@@ -113,6 +113,18 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; whitespace mode with trailing line protection
+	(defun onncera/set-up-whitespace-handling ()
+	(interactive)
+	(whitespace-mode 1)
+		;; Prevent Emacs from deleting empty lines at the bottom of the file
+		(setq-local delete-trailing-lines nil)  ;; stops emacs from deleting empty lines at the bottom of file
+		(add-to-list 'write-file-functions 'delete-trailing-whitespace)
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; ONLY WHEN USING BERKELEY MONO FONT
 	(defun swap-display-table-chars (from-char to-char display-table)
 		(aset display-table from-char (vector to-char))
