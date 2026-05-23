@@ -174,7 +174,7 @@
 
 		:ensure t
 		:custom
-		(corfu-auto nil)                 ;; disable automatic popup
+		(corfu-auto t)                   ;; disable automatic popup (toggles between t & nil)
 		(corfu-auto-delay 0.1)
 		(corfu-auto-prefix 2)
 		(corfu-cycle t)
@@ -188,7 +188,7 @@
 		(global-corfu-mode)
 
 		:config
-		(corfu-popupinfo-mode)  ;; enable Corfu popup information (the replacement for company-box doc)
+		(corfu-popupinfo-mode)  ;; popup information (like company-box)
 	)
 
 	(use-package cape
@@ -198,7 +198,7 @@
 			(setq-local completion-at-point-functions
 				(list  ;; 1. The "Super Capf" merges LSP + Snippets + Files into one menu
 				(cape-capf-super
-					#'eglot-completion-at-point
+					;; #'eglot-completion-at-point  ;; enable and uncomment if using LSP
 					#'cape-file
 					#'cape-dabbrev)
 
@@ -206,7 +206,7 @@
 				)
 			)
 		)
-		:hook (eglot-managed-mode . onncera/cape-capf-setup)
+		:hook (eglot-managed-mode . onncera/cape-capf-setup) (prog-mode . onncera/cape-capf-setup)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

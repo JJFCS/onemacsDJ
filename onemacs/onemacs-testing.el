@@ -25,6 +25,11 @@
 		(set-face-attribute 'org-level-2 nil :weight 'bold :height 1.00)
 		(set-face-attribute 'org-level-3 nil :weight 'bold :height 1.00)
 		(set-face-attribute 'org-level-4 nil :weight 'bold :height 1.00)
+
+		(set-face-attribute 'variable-pitch nil
+			:font "Iosevka Nerd Font Mono"
+			:height 140)
+		(add-hook 'org-mode-hook #'variable-pitch-mode)  ;; enable variable-pitch in org buffers
 	)
 
 	(add-hook 'org-mode-hook 'visual-line-mode)
