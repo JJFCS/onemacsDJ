@@ -5,7 +5,7 @@
 	;; testing org mode things
 	(use-package olivetti
 		:ensure t
-		:hook (org-mode . olivetti-mode)
+		:hook (org-mode . olivetti-mode) (text-mode . olivetti-mode)
 		:config
 		;; The "Nuclear Option": Force the reset function to be safe
 		;; This overwrites the broken internal calculation with a safe 'nil' (default)
@@ -27,7 +27,7 @@
 		(set-face-attribute 'org-level-4 nil :weight 'bold :height 1.00)
 
 		(set-face-attribute 'variable-pitch nil
-			:font "Iosevka Nerd Font Mono"
+			:font "MartianMono Nerd Font Mono"
 			:height 140)
 		(add-hook 'org-mode-hook #'variable-pitch-mode)  ;; enable variable-pitch in org buffers
 	)

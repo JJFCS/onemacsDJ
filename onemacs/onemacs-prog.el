@@ -52,11 +52,11 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Python specific settings
+	;; Python specific settings (currently using Tree-Sitter.. if not using TS becomes python-mode-hook)
 	(setq-default python-indent-offset 4)
-	(add-hook 'python-mode-hook #'whitespace-mode)
-	(add-hook 'python-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-python-tab)))
-	(add-hook 'python-mode-hook 'onncera/set-up-whitespace-handling)
+	(add-hook 'python-ts-mode-hook #'whitespace-mode)
+	(add-hook 'python-ts-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-python-tab)))
+	(add-hook 'python-ts-mode-hook 'onncera/set-up-whitespace-handling)
 	(use-package pyvenv     :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
