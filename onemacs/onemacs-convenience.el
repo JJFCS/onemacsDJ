@@ -2,21 +2,6 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; an alternative to the built-in Emacs help that provides much more contextual information
-
-	(use-package helpful
-		:ensure t
-		:bind
-		([remap describe-command]  . helpful-command)
-		([remap describe-key]      . helpful-key)
-		([remap describe-symbol]   . helpful-symbol)
-		([remap describe-function] . helpful-callable)
-		([remap describe-variable] . helpful-variable)
-	)
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Just disables the mouse. toggle the mode to keep it on/off
 	(use-package inhibit-mouse :ensure t :config (inhibit-mouse-mode 1))
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,14 +1,14 @@
 
 	;; -*- lexical-binding: t; -*-
 
+	;;  even though we name the file "supreme" this is only meant for theme settings
+
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package autothemer :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;;  even though we name the file "supreme" this is only meant for theme settings
-
 		(use-package leuven-theme :ensure t) (use-package ef-themes       :ensure t)
 		(use-package modus-themes :ensure t) (use-package standard-themes :ensure t)
 		(use-package doric-themes :ensure t) (use-package doom-themes     :ensure t)

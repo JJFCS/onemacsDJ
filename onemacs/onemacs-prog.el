@@ -39,19 +39,6 @@
 	;; TODO - maybe can use "C-c q" to insert a tab anywhere regardless that is 4 spaces wide
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; GO     specific settings TODO - indents are super weird now..
-	(use-package go-mode :ensure t)
-	(add-hook 'go-mode-hook #'whitespace-mode)
-	(add-hook 'go-mode-hook (lambda () (setq indent-tabs-mode nil)))
-	(add-hook 'go-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-go-tab)))
-	(add-hook 'go-mode-hook 'onncera/set-up-whitespace-handling)
-
-	;; Prefer tree-sitter mode if available
-	(if (fboundp 'go-ts-mode) (add-to-list 'major-mode-remap-alist '(go-mode . go-ts-mode)))
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Python specific settings (currently using Tree-Sitter.. if not using TS becomes python-mode-hook)
 	(setq-default python-indent-offset 4)
 	(add-hook 'python-ts-mode-hook #'whitespace-mode)
