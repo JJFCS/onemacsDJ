@@ -35,6 +35,8 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+	;; Some other font options (make sure installed on system):
+	;; - Iosevka Nerd Font Mono
 (put 'upcase-region 'disabled nil)
 (custom-set-faces
 		'(default ((t (:family "MartianMono Nerd Font Mono" :foundry "nil" :slant normal :weight regular :height 140 :width condensed))))
