@@ -2,42 +2,97 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(defvar my-key-display "" "Holds the string of the last pressed key and its command.")
-	(defun my-format-command (cmd) "Convert CMD symbol into human-readable text."
+	(defvar onncera-key-display "" "Holds the string of the last pressed key and its command.")
+	(defvar onncera-last-logged-keys nil "Tracks the last logged keys sequences")  ;; Tracking variables to filter duplicates
+	(defvar onncera-last-logged-cmd  nil "Tracks the last logged command symbol")  ;; Tracking variables to filter duplicates
+
+	(defun onncera-format-command (cmd) "Convert CMD symbol into human-readable text"
 		(if (symbolp cmd)
-		(truncate-string-to-width
-		(replace-regexp-in-string "-" " " (symbol-name cmd))
+			(truncate-string-to-width
+			(replace-regexp-in-string "-" " " (symbol-name cmd))
 			50 nil nil "...")
-		"anonymous lambda")
+				"anonymous lambda")
+			)
+
+	(defun onncera-log-key-to-buffer (log-text) "Appends LOG-TEXT to the *Key Log* buffer and keeps point at the end"
+		(let ((buf (get-buffer-create "*command binding history*")))
+	    (with-current-buffer buf
+			(unless (eq major-mode 'fundamental-mode)
+			(fundamental-mode))
+			(display-line-numbers-mode)
+				(let ((moving-point (= (point) (point-max))))
+				(save-excursion
+					(goto-char (point-max))
+					(insert log-text "\n")
+
+					;; limits the file to 1000 lines
+					(let ((line-count (count-lines (point-min) (point-max))))
+					(when (> line-count 1000)
+						(goto-char (point-min))
+						;; Find the boundary of the oldest lines we want to drop
+						(forward-line (- line-count 1000))
+						(delete-region (point-min) (point))
+					)
+					)
+					)
+
+					(when moving-point
+					(goto-char (point-max)
+					)
+					)
+					)
+			)
+			)
 	)
 
-	(defun my-update-key-display () "Update key display *before* every command runs to catch all keys accurately."
-	(let* ((keys (key-description (this-command-keys-vector))) (cmd  this-command))
-    ;; Ignore empty key vectors (can happen on pure focus events)
-    (unless (string-empty-p keys)
-		(setq my-key-display
-			(if cmd
-				(format "%s → %s" keys (my-format-command cmd))
-				(format "%s" keys)))
-				;; Force a redisplay so the header-line updates instantly
-				(force-mode-line-update)
-			)
+	(defun onncera-update-key-display () "Update key display *before* every command runs, filtering duplicates"
+		;; FIX: if we are actively in the *command binding history* buffer, don't log anything!
+		;; This prevents navigation keys (like next-line) from polluting the log
+		(unless (eq (current-buffer) (get-buffer "*command binding history*"))
+		(let* ((raw-keys (this-command-keys-vector))
+			(keys (key-description raw-keys)) 
+			(cmd  this-command))
+      
+		(unless (string-empty-p keys)
+		(unless (and (equal raw-keys onncera-last-logged-keys)
+			(eq cmd onncera-last-logged-cmd))
+          
+			(setq onncera-last-logged-keys raw-keys)
+			(setq onncera-last-logged-cmd cmd)
+          
+			(setq onncera-key-display
+				(if cmd
+					(format "%s → %s" keys (onncera-format-command cmd))
+					(format "%s" keys)))
+          
+			(onncera-log-key-to-buffer onncera-key-display)
+			(force-mode-line-update)
+		)
+		)
+		)
+		)
+	)
+
+	;; Reset tracking variables when idle
+	(add-hook 'post-command-hook (lambda () 
+		(setq onncera-last-logged-keys nil
+		      onncera-last-logged-cmd  nil
+		)
 		)
 	)
 
 	;; 1. Run on pre-command-hook for maximum key accuracy
-	(add-hook 'pre-command-hook #'my-update-key-display)
+	(add-hook 'pre-command-hook #'onncera-update-key-display)
 
-	;; 2. Crucial fix: Ensure minibuffer commands are caught
-	(defun my-setup-minibuffer-key-display () "Ensure our key display updates inside the minibuffer."
-		(add-hook 'pre-command-hook #'my-update-key-display nil t)
-	)
-	(add-hook 'minibuffer-setup-hook #'my-setup-minibuffer-key-display)
+	;; 2. Ensure minibuffer commands are caught
+	(defun onncera-setup-minibuffer-key-display () "Ensure our key display updates inside the minibuffer."
+	(add-hook 'pre-command-hook #'onncera-update-key-display nil t))
+	(add-hook 'minibuffer-setup-hook #'onncera-setup-minibuffer-key-display)
 
 	;; 3. Your header-line configuration (optimized slightly)
 	(setq-default header-line-format
 	'((:eval
-	(let ((text my-key-display))
+	(let ((text onncera-key-display))
 		(unless (string-empty-p text)
 		(concat
 		(propertize
@@ -58,13 +113,28 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; remove  every line in the command binding history buffer that contains "self insert command"
+	;; command only works in the command binding history buffer
+	(defun onncera-remove-self-insert-command-lines ()
+		(interactive)
+		(if (string= (buffer-name) "*command binding history*")
+			(progn
+				(beginning-of-buffer)
+				(flush-lines "self insert command"))
+		(user-error "error: you are not in *command binding history* buffer")
+		)
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; when in devdocs can use mouse , anywhere else and we enable inhibit mouse mode
 	(add-hook
 		'window-selection-change-functions
 		(lambda (_frame)
 			(if (derived-mode-p 'devdocs-mode)
 				(inhibit-mouse-mode -1)
-				(inhibit-mouse-mode 1)))
+				(inhibit-mouse-mode  1)))
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -72,14 +142,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; tabs dwim - literally insert 4 spaces - not indentation
 	(defun onncera-python-tab ()
-		(interactive) (insert "    ")
-	)
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; tabs dwim - literally insert 4 spaces - not indentation
-	(defun onncera-go-tab ()
 		(interactive) (insert "    ")
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -161,7 +223,7 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(defun smart-beginning-of-line ()
+	(defun onncera-smart-beginning-of-line ()
 		"moves cursor to first non-whitespace char or beg of line. alternates if called repeatedly"
 		(interactive)
 		(let ((old-point (point)))
@@ -171,7 +233,7 @@
 		)
 
 	;; Remap the standard C-a binding
-	(global-set-key [remap move-beginning-of-line] 'smart-beginning-of-line)
+	(global-set-key [remap move-beginning-of-line] 'onncera-smart-beginning-of-line)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
