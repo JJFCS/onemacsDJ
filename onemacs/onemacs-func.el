@@ -2,6 +2,62 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(defvar my-key-display "" "Holds the string of the last pressed key and its command.")
+	(defun my-format-command (cmd) "Convert CMD symbol into human-readable text."
+		(if (symbolp cmd)
+		(truncate-string-to-width
+		(replace-regexp-in-string "-" " " (symbol-name cmd))
+			50 nil nil "...")
+		"anonymous lambda")
+	)
+
+	(defun my-update-key-display () "Update key display *before* every command runs to catch all keys accurately."
+	(let* ((keys (key-description (this-command-keys-vector))) (cmd  this-command))
+    ;; Ignore empty key vectors (can happen on pure focus events)
+    (unless (string-empty-p keys)
+		(setq my-key-display
+			(if cmd
+				(format "%s → %s" keys (my-format-command cmd))
+				(format "%s" keys)))
+				;; Force a redisplay so the header-line updates instantly
+				(force-mode-line-update)
+			)
+		)
+	)
+
+	;; 1. Run on pre-command-hook for maximum key accuracy
+	(add-hook 'pre-command-hook #'my-update-key-display)
+
+	;; 2. Crucial fix: Ensure minibuffer commands are caught
+	(defun my-setup-minibuffer-key-display () "Ensure our key display updates inside the minibuffer."
+		(add-hook 'pre-command-hook #'my-update-key-display nil t)
+	)
+	(add-hook 'minibuffer-setup-hook #'my-setup-minibuffer-key-display)
+
+	;; 3. Your header-line configuration (optimized slightly)
+	(setq-default header-line-format
+	'((:eval
+	(let ((text my-key-display))
+		(unless (string-empty-p text)
+		(concat
+		(propertize
+			" "
+			'display
+			`(space :align-to
+				(- right-fringe
+				,(1+ (string-width text))
+				)
+			)
+		)
+	    	     text)
+				)
+			)
+		))
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; when in devdocs can use mouse , anywhere else and we enable inhibit mouse mode
 	(add-hook
 		'window-selection-change-functions

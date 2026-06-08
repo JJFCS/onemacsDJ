@@ -5,7 +5,20 @@
 	;; testing org mode things
 	(use-package olivetti
 		:ensure t
-		:hook (org-mode . olivetti-mode) (text-mode . olivetti-mode)
+		:hook (org-mode . olivetti-mode)
+
+		:init
+		;; Custom function to enable olivetti only for specific extensions
+		(defun onncera-enable-olivetti-by-extension ()
+		(when (and buffer-file-name 
+			(string-match-p "\\.txt\\'" buffer-file-name))
+			(olivetti-mode)
+			)
+		)
+
+		;; run this check whenever a file is loaded
+		(add-hook 'find-file-hook #'onncera-enable-olivetti-by-extension)
+
 		:config
 		;; The "Nuclear Option": Force the reset function to be safe
 		;; This overwrites the broken internal calculation with a safe 'nil' (default)

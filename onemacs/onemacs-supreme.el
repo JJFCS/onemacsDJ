@@ -97,7 +97,6 @@
 		(set-face-attribute 'font-lock-string-face nil :foreground (onncera-color 'onncera-brown))
 		(set-face-attribute 'font-lock-doc-face nil :foreground (onncera-color 'onncera-green-warmer))
 		(set-face-attribute 'cursor nil :background (onncera-color 'onncera-main))
-		(set-face-attribute 'helm-selection nil :background (onncera-color 'onncera-mode))
 
 
 		;; taken from https://github.com/rexim/gruber-darker-theme/blob/master/gruber-darker-theme.el
