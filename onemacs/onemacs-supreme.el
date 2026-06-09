@@ -1,7 +1,9 @@
 
 	;; -*- lexical-binding: t; -*-
 
-	;;  even though we name the file "supreme" this is only meant for theme settings
+	;; even though we name the file "supreme" this is only meant for theme settings
+	;; cool themes:
+	;; - doom-badger , nvim-dark , standard-dark
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package autothemer :ensure t)
@@ -30,9 +32,29 @@
 		)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+	;; NOTE - The general veto settings apply to all themes. The non-general is only for nvim dark theme
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; NOTE - The general veto settings apply to all themes. The non-general is only for nvim dark theme
+	(defun onncera/theme-settings-veto-general ()
+	"remove italics , disable bold , set highlight line color"
+	(dolist (face (face-list)) (when (face-attribute face :slant nil 'default) (set-face-attribute face nil :slant 'normal)))
+		;; disable italics
+		(set-face-attribute 'font-lock-comment-face nil
+			:slant 'normal)
+		(set-face-attribute 'font-lock-doc-face nil
+			:slant 'normal)
+		(set-face-attribute 'italic nil
+			:slant 'normal)
+		;; disable bold
+		(set-face-attribute 'bold nil
+			:weight 'normal)
+		;; hl-line
+		(when (facep 'hl-line) (set-face-attribute 'hl-line nil :background "midnight blue"))
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defconst onncera-colors
 		'(
 		(onncera-background    . "#14161B")
@@ -57,26 +79,6 @@
 
 
 	(defun onncera-color (name) "return color NAME from `onncera-colors'" (alist-get name onncera-colors))
-
-
-	(defun onncera/theme-settings-veto-general ()
-	"remove italics , disable bold , set highlight line color"
-	(dolist (face (face-list)) (when (face-attribute face :slant nil 'default) (set-face-attribute face nil :slant 'normal)))
-		;; disable italics
-		(set-face-attribute 'font-lock-comment-face nil
-			:slant 'normal)
-		(set-face-attribute 'font-lock-doc-face nil
-			:slant 'normal)
-		(set-face-attribute 'italic nil
-			:slant 'normal)
-		;; disable bold
-		(set-face-attribute 'bold nil
-			:weight 'normal)
-		;; hl-line
-		(when (facep 'hl-line) (set-face-attribute 'hl-line nil :background "midnight blue"))
-	)
-
-
 	(defun onncera/theme-settings-veto ()
 	"place my preferred theme preferences"
 
@@ -94,7 +96,6 @@
 		(set-face-attribute 'cursor nil :background (onncera-color 'onncera-main))
 		(set-face-attribute 'helm-selection nil :background (onncera-color 'onncera-mode))
 
-
 		;; taken from https://github.com/rexim/gruber-darker-theme/blob/master/gruber-darker-theme.el
 		(with-eval-after-load 'whitespace
 			(set-face-attribute 'whitespace-space            nil :background (onncera-color 'onncera-background)  :foreground (onncera-color 'onncera-whitespace1))
@@ -111,8 +112,10 @@
 		(when (facep 'hl-line) (set-face-attribute 'hl-line nil :background "midnight blue"))
 
 	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun onncera/theme-settings (&rest _)
 	"run theme overrides safely after theme changes"
 
