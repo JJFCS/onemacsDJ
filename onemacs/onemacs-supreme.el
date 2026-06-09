@@ -20,9 +20,6 @@
 		:vc (:url "https://github.com/mang-jin/emacs-theme-nvim-dark"
 		:rev :newest))
 
-		(add-to-list 'custom-theme-load-path
-			(expand-file-name "onemacs-theme" user-emacs-directory))
-
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
 							(load-theme 'nvim-dark t)
@@ -59,9 +56,7 @@
 	)
 
 
-	(defun onncera-color (name)
-	"return color NAME from `onncera-colors'"
-		(alist-get name onncera-colors))
+	(defun onncera-color (name) "return color NAME from `onncera-colors'" (alist-get name onncera-colors))
 
 
 	(defun onncera/theme-settings-veto-general ()
@@ -97,6 +92,7 @@
 		(set-face-attribute 'font-lock-string-face nil :foreground (onncera-color 'onncera-brown))
 		(set-face-attribute 'font-lock-doc-face nil :foreground (onncera-color 'onncera-green-warmer))
 		(set-face-attribute 'cursor nil :background (onncera-color 'onncera-main))
+		(set-face-attribute 'helm-selection nil :background (onncera-color 'onncera-mode))
 
 
 		;; taken from https://github.com/rexim/gruber-darker-theme/blob/master/gruber-darker-theme.el

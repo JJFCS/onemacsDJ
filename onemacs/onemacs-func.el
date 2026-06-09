@@ -241,32 +241,11 @@
 	;; whitespace mode with trailing line protection
 	(defun onncera/set-up-whitespace-handling ()
 	(interactive)
-	(whitespace-mode 1)
+	(whitespace-mode)
 		;; Prevent Emacs from deleting empty lines at the bottom of the file
 		(setq-local delete-trailing-lines nil)  ;; stops emacs from deleting empty lines at the bottom of file
-		(add-to-list 'write-file-functions 'delete-trailing-whitespace)
+		(add-hook 'before-save-hook #'delete-trailing-whitespace nil t)
 	)
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; ONLY WHEN USING BERKELEY MONO FONT
-	(defun swap-display-table-chars (from-char to-char display-table)
-		(aset display-table from-char (vector to-char))
-		(aset display-table to-char (vector from-char))
-	)
-
-	(defun setup-swap-display-table ()
-		(let ((current-font (face-attribute 'default :family)) (dt  (or buffer-display-table  (make-display-table))))
-		(when (string= current-font "Berkeley Mono Trial")
-			(swap-display-table-chars ?# ?*  dt)
-			(swap-display-table-chars ?/ ?\\ dt)
-			(swap-display-table-chars ?\\ ?/ dt)
-			(setq buffer-display-table dt)))
-	)
-
-	(add-hook 'text-mode-hook 'setup-swap-display-table)
-	(add-hook 'prog-mode-hook 'setup-swap-display-table)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

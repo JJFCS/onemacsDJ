@@ -7,6 +7,16 @@
 	;; > ripgrep
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP, HELM-DESCBINDS
+	;;									helm-M-x-show-short-doc
+	(use-package helm-describe-modes :ensure t)
+	(use-package helm :ensure t)
+	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
+	(define-key helm-map (kbd "C-j") #'helm-select-action)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 	(savehist-mode 1)  ;; To del M-x history navigate to onemacs-cache and delete the "history" file
 	(setq backup-directory-alist '(("." . "~/.emacs.d/onemacs-cache/backups")))
 
