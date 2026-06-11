@@ -10,7 +10,7 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP, HELM-DESCBINDS
-	;;									helm-M-x-show-short-doc
+	;;									helm-M-x-show-short-doc , C-o does the toggling in helm-mode
 	(use-package helm-describe-modes :ensure t)
 	(use-package helm :ensure t)
 	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)

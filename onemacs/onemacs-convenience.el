@@ -8,11 +8,8 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(use-package indent-bars   :ensure t
-		:hook (
-		(python-mode . indent-bars-mode)
-			)
-		)
+	;; If want to use for programming modes (prog-mode . indent-bars-mode) place in hook block
+	(use-package indent-bars   :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

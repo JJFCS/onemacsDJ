@@ -9,6 +9,7 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; NOTE - we are using TS so take note of how we modify certain modes
 	;; once grammars installed, move ---> "~/.emacs.d/onemacs-cache/onemacs-language-grammars"
 	(setq treesit-extra-load-path '("~/.emacs.d/onemacs-cache/onemacs-language-grammars"))
 	(use-package treesit-auto :ensure t
@@ -32,16 +33,18 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; C      specific settings
 	(setq-default c-basic-offset 4)
-	(add-hook 'c-mode-hook 'onncera/set-up-whitespace-handling)
+	(setq-default c-ts-mode-indent-offset 4)
+	(add-hook 'c-ts-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-standard-tab)))
+	(add-hook 'c-ts-mode-hook 'onncera-set-up-whitespace-handling)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	;; TODO - maybe can use "C-c q" to insert a tab anywhere regardless that is 4 spaces wide
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Python specific settings (currently using Tree-Sitter.. if not using TS becomes python-mode-hook)
+	;; Python specific settings
 	(setq-default python-indent-offset 4)
-	(add-hook 'python-ts-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-python-tab)))
-	(add-hook 'python-ts-mode-hook 'onncera/set-up-whitespace-handling)
+	(add-hook 'python-ts-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-standard-tab)))
+	(add-hook 'python-ts-mode-hook 'onncera-set-up-whitespace-handling)
 	(use-package pyvenv     :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -96,7 +99,7 @@
 
 	(use-package projectile :ensure t
 		:config
-		(setq projectile-known-projects-file "~/.emacs.d/onemacs-cache/projectile-bookmarks.eld")
+		(setq projectile-known-projects-file "~/.emacs.d/onemacs-cache/projectile-bookmarks.eld")  ;; TODO - is this right?
 		(projectile-mode 1)
 	)
 		(add-hook 'xref-backend-functions #'dumb-jump-xref-activate) (dumb-jump-mode)

@@ -128,20 +128,8 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; when in devdocs can use mouse , anywhere else and we enable inhibit mouse mode
-	(add-hook
-		'window-selection-change-functions
-		(lambda (_frame)
-			(if (derived-mode-p 'devdocs-mode)
-				(inhibit-mouse-mode -1)
-				(inhibit-mouse-mode  1)))
-	)
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; tabs dwim - literally insert 4 spaces - not indentation
-	(defun onncera-python-tab ()
+	(defun onncera-standard-tab ()
 		(interactive) (insert "    ")
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -201,28 +189,6 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(defun onncera-root-find () (interactive)
-		(let ((project-root (projectile-project-root))
-			)
-				(if project-root
-					(consult-find project-root)
-				(message "NOT IN A PROJECT ---> CREATE .GIT OR .PROJECTILE")
-		)
-		)
-		)
-	(defun onncera-root-grep () (interactive)
-		(let ((project-root (projectile-project-root))
-			)
-				(if project-root
-					(consult-ripgrep project-root)
-				(message "NOT IN A PROJECT ---> CREATE .GIT OR .PROJECTILE")
-		)
-		)
-		)
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(defun onncera-smart-beginning-of-line ()
 		"moves cursor to first non-whitespace char or beg of line. alternates if called repeatedly"
 		(interactive)
@@ -239,10 +205,9 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; whitespace mode with trailing line protection
-	(defun onncera/set-up-whitespace-handling ()
+	(defun onncera-set-up-whitespace-handling ()
 	(interactive)
 	(whitespace-mode)
-		;; Prevent Emacs from deleting empty lines at the bottom of the file
 		(setq-local delete-trailing-lines nil)  ;; stops emacs from deleting empty lines at the bottom of file
 		(add-hook 'before-save-hook #'delete-trailing-whitespace nil t)
 	)
