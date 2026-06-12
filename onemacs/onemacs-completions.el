@@ -9,12 +9,18 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP, HELM-DESCBINDS
+	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP
 	;;									helm-M-x-show-short-doc , C-o does the toggling in helm-mode
 	(use-package helm-describe-modes :ensure t)
 	(use-package helm :ensure t)
 	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
 	(define-key helm-map (kbd "C-j") #'helm-select-action)
+
+	(use-package helm-descbinds :ensure t
+		:init
+		(helm-descbinds-mode)
+		(setq prefix-help-command #'helm-descbinds)
+	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	(savehist-mode 1)  ;; To del M-x history navigate to onemacs-cache and delete the "history" file
@@ -53,6 +59,7 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; NOTE - (setq prefix-help-command #'embark-prefix-help-command) can replace helm-descbinds
 	(use-package embark-consult :ensure t)
 	(use-package embark         :ensure t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
