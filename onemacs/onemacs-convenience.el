@@ -2,8 +2,26 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Just disables the mouse. toggle the mode to keep it on/off
-	(use-package inhibit-mouse :ensure t :config (inhibit-mouse-mode 1))
+	;; NOTE - brew install pkg-config poppler autoconf automake
+	(use-package pdf-tools :ensure t
+		:mode ("\\.pdf\\'" . pdf-view-mode)
+		:config
+		(add-hook 'pdf-view-mode-hook
+			(lambda ()
+				(display-line-numbers-mode -1)
+			)
+		)
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(use-package inhibit-mouse
+		:ensure t 
+		:config
+		(setq inhibit-mouse-excluded-modes '(pdf-view-mode devdocs-mode))  ;; can use mouse in these modes
+		(inhibit-mouse-mode 1)
+	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
