@@ -27,6 +27,7 @@
 	(setq-default truncate-lines t)
 	(setq inhibit-splash-screen  t)
 	(setq display-line-numbers-type 'relative) (setq insert-directory-program "gls")
+	(setq enable-recursive-minibuffers t)
 	:custom
 	(standard-indent 4)
 	(tab-width 4)
