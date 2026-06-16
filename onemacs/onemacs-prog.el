@@ -3,22 +3,19 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; dependencies
-	;; > homebrew
 	;; > brew install basedpyright
 	;; > brew install llvm
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; NOTE - we are using TS so take note of how we modify certain modes
-	;; once grammars installed, move ---> "~/.emacs.d/onemacs-cache/onemacs-language-grammars"
+	;; NOTE - once grammars installed, move ---> "~/.emacs.d/onemacs-cache/onemacs-language-grammars"
 	(setq treesit-extra-load-path '("~/.emacs.d/onemacs-cache/onemacs-language-grammars"))
-	(use-package treesit-auto :ensure t
-			:custom
-			(treesit-auto-install 'prompt)
-			:config
-			(treesit-auto-add-to-auto-mode-alist 'all)
-			(global-treesit-auto-mode)
-		)
+	(use-package treesit-auto
+		:ensure t
+		:custom (treesit-auto-install 'prompt)
+		:config (treesit-auto-add-to-auto-mode-alist 'all) (global-treesit-auto-mode)
+	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -50,7 +47,7 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(use-package git-gutter :ensure t :hook ((prog-mode . git-gutter-mode)))
+	(use-package git-gutter :ensure t :hook (prog-mode . git-gutter-mode))
 	(use-package magit      :ensure t :defer t)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -76,7 +73,7 @@
 		)
 		)
 
-		;; This makes Eglot and Cape play even better together
+		;; makes eglot and cape play better together
 		(defun onncera/eglot-capf ()
 			(setq-local completion-at-point-functions
 				(list (cape-capf-buster #'eglot-completion-at-point))))

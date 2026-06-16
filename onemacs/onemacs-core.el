@@ -7,32 +7,32 @@
 		(blink-cursor-mode -1) (fringe-mode -1)  (menu-bar-mode -1) (scroll-bar-mode    -1) (tool-bar-mode        -1)
 	)
 
-
 	(when (boundp 'native-comp-eln-load-path)
 	(setcar native-comp-eln-load-path
 	(expand-file-name "onemacs-cache/eln-cache/" user-emacs-directory)
 			)
 		)
 
-
 	(use-package emacs
 		:init
-		(add-hook 'emacs-startup-hook  'split-window-horizontally)
-		(add-hook 'emacs-startup-hook  'toggle-frame-fullscreen t)
-		(add-hook 'emacs-startup-hook  'onncera-sane t)
-		(add-to-list    'exec-path "/opt/homebrew/bin")
-	(setq recentf-save-file "~/.emacs.d/onemacs-cache/recentf")
-	(setq savehist-file     "~/.emacs.d/onemacs-cache/history")
-	(setq auto-save-default nil) (setq auto-save-list-file-prefix nil)
-	(setq-default truncate-lines t)
-	(setq inhibit-splash-screen  t)
-	(setq display-line-numbers-type 'relative) (setq insert-directory-program "gls")
-	(setq enable-recursive-minibuffers t)
-	:custom
-	(standard-indent 4)
-	(tab-width 4)
-	(indent-tabs-mode nil)
-		)
+		(add-hook 'emacs-startup-hook 'split-window-horizontally)
+		(add-hook 'emacs-startup-hook 'toggle-frame-fullscreen t)
+		(add-hook 'emacs-startup-hook 'onncera-sane t)
+		(add-to-list   'exec-path "/opt/homebrew/bin")
+		(setq recentf-save-file "~/.emacs.d/onemacs-cache/recentf")
+		(setq savehist-file     "~/.emacs.d/onemacs-cache/history")
+		(setq auto-save-default nil)
+		(setq auto-save-list-file-prefix nil)
+		(setq inhibit-splash-screen t)
+		(setq display-line-numbers-type 'relative)
+		(setq insert-directory-program "gls")
+		(setq enable-recursive-minibuffers t)
+		(setq-default truncate-lines t)
+		:custom
+		(standard-indent 4)
+		(tab-width 4)
+		(indent-tabs-mode nil)
+	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

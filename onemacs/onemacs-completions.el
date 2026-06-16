@@ -9,18 +9,17 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP
-	;;									helm-M-x-show-short-doc , C-o does the toggling in helm-mode
+	;; - NOTE: C-o does the toggling in helm-mode
+	;; - NOTE: currently using which-key.. to use helm-descbinds, uncomment use-package block below
+	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP, helm-M-x-show-short-doc
 	(use-package helm-describe-modes :ensure t)
 	(use-package helm :ensure t)
 	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
 	(define-key helm-map (kbd "C-j") #'helm-select-action)
 
-	;; NOTE - currently using which-key
-	;; (use-package helm-descbinds :ensure t
-	;; 	:init
-	;; 	(helm-descbinds-mode)
-	;; 	(setq prefix-help-command #'helm-descbinds)
+	;; (use-package helm-descbinds
+	;; 	:ensure t
+	;; 	:init (helm-descbinds-mode) (setq prefix-help-command #'helm-descbinds)
 	;; )
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -42,20 +41,13 @@
 		(require 'vertico-multiform)
 		(setq vertico-multiform-categories '((file (vertico-sort-function . onncera-vertico-find-file))))
 		(setq vertico-multiform-commands '(
-			(consult-find      buffer)
-			(consult-grep      buffer)
-			(consult-line      buffer)
-			(onncera-root-find buffer)
-			(onncera-root-grep buffer)
+			(consult-find buffer)
+			(consult-grep buffer)
+			(consult-line buffer)
 			(imenu buffer)
-				)
 			)
-		(require 'vertico-quick)
-			:bind (:map vertico-map
-			("C-q"   . vertico-quick-insert) ("M-q" . vertico-quick-exit)
-			("C-c s" . vertico-grid-mode)
-				)
-			)
+		)
+	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -67,7 +59,7 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Typical workflow
+	;; NOTE - Typical workflow:
 	;; - consult-ripgrep : "what you are looking for". Transient. once you select a line, other matches gone
 	;; - deadgrep		 : creates a dedicated persistent buffer for your search results using ripgrep
 	;; - wgrep			 : allows you to make a search result buffer editable
@@ -97,23 +89,25 @@
 		(global-corfu-mode)
 
 		:config
-		(corfu-popupinfo-mode)  ;; popup information (like company-box)
+		(corfu-popupinfo-mode)           ;; popup information (like company-box)
 	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package cape
 		:ensure t
 		:init
 		(defun onncera/cape-capf-setup ()
-			(setq-local completion-at-point-functions
-				(list  ;; 1. The "Super Capf" merges LSP + Snippets + Files into one menu
-				(cape-capf-super
-					;; #'eglot-completion-at-point  ;; enable and uncomment if using LSP
-					#'cape-file
-					#'cape-dabbrev)
-
-					'cape-keyword  ;; 2. Keywords as a fallback
-				)
-			)
+		(setq-local completion-at-point-functions
+		(list
+		(cape-capf-super
+			;; #'eglot-completion-at-point  ;; uncomment if you want to use LSP
+			#'cape-file
+			#'cape-dabbrev)
+			#'cape-keyword
+		)
+		)
 		)
 		:hook (eglot-managed-mode . onncera/cape-capf-setup) (prog-mode . onncera/cape-capf-setup)
 	)
