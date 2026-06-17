@@ -6,20 +6,21 @@
 	;; - doom-badger , nvim-dark , onncera-dark , pixel-themes-alia16 , standard-dark , turbo-c
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		(use-package leuven-theme :ensure t) (use-package ef-themes       :ensure t)
-		(use-package modus-themes :ensure t) (use-package standard-themes :ensure t)
-		(use-package doric-themes :ensure t) (use-package doom-themes     :ensure t)
+		(use-package leuven-theme :ensure t :defer t) (use-package ef-themes       :ensure t :defer t)
+		(use-package modus-themes :ensure t :defer t) (use-package standard-themes :ensure t :defer t)
+		(use-package doric-themes :ensure t :defer t) (use-package doom-themes     :ensure t :defer t)
 
-		(use-package gruber-darker-theme     :ensure t)
-		(use-package jetbrains-darcula-theme :ensure t)
-		(use-package nordic-night-theme      :ensure t)
+		(use-package gruber-darker-theme     :ensure t :defer t)
+		(use-package jetbrains-darcula-theme :ensure t :defer t)
+		(use-package nordic-night-theme      :ensure t :defer t)
 
 		(use-package turbo-c-theme
 			:vc (:url "https://github.com/Senka07/turboc-emacs-theme"
 			:rev :newest)
 		)
 
-		(use-package pixel-themes :vc (:url "https://github.com/lucasobx/pixel-themes"
+		(use-package pixel-themes
+			:vc (:url "https://github.com/lucasobx/pixel-themes"
 			:rev :newest)
 		)
 

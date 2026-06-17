@@ -56,34 +56,27 @@
 	(use-package eglot
 		:hook
 		(
-			(python-mode . eglot-ensure)
-			(c-mode      . eglot-ensure)
+			(python-ts-mode . eglot-ensure)
+			(c-ts-mode      . eglot-ensure)
 		)
 
 		:config
 		(setq eglot-ignored-server-capabilities '(:inlayHintProvider))
 
 		(add-to-list 'eglot-server-programs
-					 '(python-mode . ("basedpyright-langserver" "--stdio")
+					 '(python-ts-mode . ("basedpyright-langserver" "--stdio")
 		)
 		)
 
 		(add-to-list 'eglot-server-programs
-					 '(c-mode      . ("clangd")
+					 '(c-ts-mode      . ("clangd")
 		)
 		)
-
-		;; makes eglot and cape play better together
-		(defun onncera/eglot-capf ()
-			(setq-local completion-at-point-functions
-				(list (cape-capf-buster #'eglot-completion-at-point))))
-		(add-hook 'eglot-managed-mode-hook #'onncera/eglot-capf)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(use-package dumb-jump  :ensure t)
 	(use-package devdocs    :ensure t
 		:config
 		(setq devdocs-browser-function #'eww)  ;; force eww renderer (this is to help with font display)
@@ -99,7 +92,6 @@
 		(setq projectile-known-projects-file "~/.emacs.d/onemacs-cache/projectile-bookmarks.eld")  ;; TODO - is this right?
 		(projectile-mode 1)
 	)
-		(add-hook 'xref-backend-functions #'dumb-jump-xref-activate) (dumb-jump-mode)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

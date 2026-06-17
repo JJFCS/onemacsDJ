@@ -115,7 +115,6 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(require 'consult) (require 'embark)
 	(use-package emacs
 		:bind (("C-," . embark-act) ("C-." . embark-dwim))
 								)

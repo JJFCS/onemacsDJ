@@ -27,20 +27,23 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		(require 'onemacs-core)
 		(require 'onemacs-func)
-		(require 'onemacs-prog)
 		(require 'onemacs-completions)
+		(require 'onemacs-prog)
 		(require 'onemacs-convenience)
 		(require 'onemacs-supreme)
 		(require 'onemacs-testing)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Some other font options (make sure installed on system):
 	;; - Iosevka Nerd Font Mono
-(put 'upcase-region 'disabled nil)
-(custom-set-faces
-		'(default ((t (:family "MartianMono Nerd Font Mono" :foundry "nil" :slant normal :weight regular :height 140 :width condensed))))
-		'(completions-annotations ((t (:slant normal))))
-		'(completions-common-part ((t (:slant normal))))
+	(add-hook 'after-init-hook
+		(lambda ()
+			(set-face-attribute 'default nil :family "MartianMono Nerd Font Mono" :height 140 :width 'condensed :weight 'regular :slant 'normal)
+    	    (set-face-attribute 'completions-annotations nil :slant 'normal)
+	        (set-face-attribute 'completions-common-part nil :slant 'normal)
+		)
 	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
