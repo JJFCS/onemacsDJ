@@ -18,7 +18,12 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(use-package keycast :ensure t :config (keycast-header-line-mode))
+	(use-package keycast :ensure t
+	:config
+	(keycast-tab-bar-mode)  ;; frame-global, no buffer can clobber it
+	(setq keycast-window-predicate #'always)
+	(setq keycast-substitute-alist '())
+	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
