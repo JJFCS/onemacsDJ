@@ -29,8 +29,8 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package marginalia :ensure t  :init  (marginalia-mode)  (setq marginalia-align 'right))
 	(use-package orderless  :ensure t
-		:custom
-		(completion-styles '(orderless basic)
+		:config
+		(setq completion-styles '(orderless basic)
 				)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -72,24 +72,19 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package corfu
-
 		:ensure t
-		:custom
-		(corfu-auto t)                   ;; disable automatic popup (toggles between t & nil)
-		(corfu-auto-delay 0.1)
-		(corfu-auto-prefix 2)
-		(corfu-cycle t)
-		(corfu-quit-at-boundary nil)     ;; never quit at completion boundary
-		(corfu-quit-no-match t)          ;; Quit if no match
-
 		:bind
-		("C-c h" . completion-at-point)  ;; manual trigger
-
+		("C-c h" . completion-at-point)
 		:init
 		(global-corfu-mode)
-
 		:config
-		(corfu-popupinfo-mode)           ;; popup information (like company-box)
+		(setq corfu-auto t)                   ;; disable automatic popup (toggles between t & nil)
+		(setq corfu-auto-delay 0.1)
+		(setq corfu-auto-prefix 2)
+		(setq corfu-cycle t)
+		(setq corfu-quit-at-boundary nil)     ;; never quit at completion boundary
+		(setq corfu-quit-no-match t)          ;; Quit if no match
+		(corfu-popupinfo-mode)                ;; popup information (like company-box)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

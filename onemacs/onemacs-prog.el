@@ -13,8 +13,10 @@
 	(setq treesit-extra-load-path '("~/.emacs.d/onemacs-cache/onemacs-language-grammars"))
 	(use-package treesit-auto
 		:ensure t
-		:custom (treesit-auto-install 'prompt)
-		:config (treesit-auto-add-to-auto-mode-alist 'all) (global-treesit-auto-mode)
+		:config
+		(setq treesit-auto-install 'prompt)
+		(treesit-auto-add-to-auto-mode-alist 'all)
+		(global-treesit-auto-mode)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -83,7 +85,7 @@
 		;; make html inherit emacs faces
 		(setq shr-use-fonts  nil)
 		(setq shr-use-colors nil)
-		:custom (devdocs-data-dir (expand-file-name "onemacs-cache/devdocs" user-emacs-directory)
+		(setq devdocs-data-dir (expand-file-name "onemacs-cache/devdocs" user-emacs-directory)
 	)
 	)
 

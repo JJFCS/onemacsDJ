@@ -20,7 +20,7 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package keycast :ensure t
 	:config
-	(keycast-tab-bar-mode)  ;; frame-global, no buffer can clobber it
+	(keycast-tab-bar-mode)
 	(setq keycast-window-predicate #'always)
 	(setq keycast-substitute-alist '())
 	)
@@ -29,10 +29,10 @@
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package which-key :init (which-key-mode)
-		:custom
-		(which-key-show-early-on-C-h t)
-		(which-key-idle-delay 1e6)  ;; effectively disable automatic popup
-		(which-key-idle-secondary-delay 0.05)
+		:config
+		(setq which-key-show-early-on-C-h t)
+		(setq which-key-idle-delay 1e6)
+		(setq which-key-idle-secondary-delay 0.05)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

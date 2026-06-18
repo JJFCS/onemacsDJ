@@ -37,10 +37,10 @@
 
 		(put 'upcase-region 'disabled nil)
 
-		:custom
-		(standard-indent 4)
-		(tab-width 4)
-		(indent-tabs-mode nil)
+		:config
+		(setq standard-indent 4)
+		(setq tab-width 4)
+		(setq indent-tabs-mode nil)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
