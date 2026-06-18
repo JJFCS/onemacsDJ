@@ -38,6 +38,19 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(use-package exec-path-from-shell
+	:ensure t
+	:if (and (display-graphic-p)
+		(eq system-type 'darwin))
+	:demand t
+	:config
+	(setq exec-path-from-shell-variables '("PATH"))
+	(exec-path-from-shell-initialize)
+	)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package multiple-cursors :ensure t :defer t
 		:init (setq mc/list-file "~/.emacs.d/onemacs-cache/mc-lists.el")
 		:bind (
