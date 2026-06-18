@@ -34,7 +34,7 @@
 
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
-							(load-theme 'pixel-themes-alia16 t)
+							(load-theme 'turbo-c t)
 
 						)
 		)
