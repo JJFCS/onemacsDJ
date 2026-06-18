@@ -31,6 +31,7 @@
 		(require 'onemacs-prog)
 		(require 'onemacs-convenience)
 		(require 'onemacs-supreme)
+		(require 'onemacs-keybindings)
 		(require 'onemacs-testing)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -40,9 +41,11 @@
 	;; - Iosevka Nerd Font Mono
 	(add-hook 'after-init-hook
 		(lambda ()
-			(set-face-attribute 'default nil :family "MartianMono Nerd Font Mono" :height 140 :width 'condensed :weight 'regular :slant 'normal)
-    	    (set-face-attribute 'completions-annotations nil :slant 'normal)
-	        (set-face-attribute 'completions-common-part nil :slant 'normal)
+		        (set-face-attribute 'default nil        :family "MartianMono Nerd Font Mono" :height 140 :width 'condensed :weight 'regular :slant 'normal)
+			(set-face-attribute 'fixed-pitch nil    :family "MartianMono Nerd Font Mono" :height 140 :width 'condensed :weight 'regular :slant 'normal)
+			(set-face-attribute 'variable-pitch nil :family "Merriweather" :height 140)
+		        (set-face-attribute 'completions-annotations nil :slant 'normal)
+        		(set-face-attribute 'completions-common-part nil :slant 'normal)
 		)
 	)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
