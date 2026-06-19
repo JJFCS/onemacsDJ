@@ -27,7 +27,7 @@
 	(setq backup-directory-alist '(("." . "~/.emacs.d/onemacs-cache/backups")))
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(use-package marginalia :ensure t  :init  (marginalia-mode)  (setq marginalia-align 'right))
+	(use-package marginalia :ensure t :init (marginalia-mode) (setq marginalia-align 'right))
 	(use-package orderless  :ensure t
 		:config
 		(setq completion-styles '(orderless basic)
@@ -73,8 +73,6 @@
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(use-package corfu
 		:ensure t
-		:bind
-		("C-c h" . completion-at-point)
 		:init
 		(global-corfu-mode)
 		:config
