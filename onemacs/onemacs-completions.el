@@ -13,9 +13,13 @@
 	;; - NOTE: currently using which-key.. to use helm-descbinds, uncomment use-package block below
 	;; - TODO: INCLUDE THE FOLLOWING MODULES === HELM-PROJECTILE, HELM-SWOOP, helm-M-x-show-short-doc
 	(use-package helm-describe-modes :ensure t)
-	(use-package helm :ensure t)
-	(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
-	(define-key helm-map (kbd "C-j") #'helm-select-action)
+	(use-package helm
+		:ensure t
+		:bind (:map helm-map
+			("TAB" . helm-execute-persistent-action)
+			("C-j" . helm-select-action)
+		)
+	)
 
 	;; (use-package helm-descbinds
 	;; 	:ensure t

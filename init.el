@@ -2,6 +2,15 @@
 	;; -*- lexical-binding: t; -*-
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(when (boundp 'native-comp-eln-load-path)
+	(setcar native-comp-eln-load-path
+	(expand-file-name "onemacs-cache/eln-cache/" user-emacs-directory)
+			)
+		)
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	(require 'package)
 	(setq package-archives '(
 		("melpa" . "https://melpa.org/packages/") ("elpa" . "https://elpa.gnu.org/packages/")

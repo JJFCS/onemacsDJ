@@ -30,6 +30,7 @@
 
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; TODO - check for TS specific settings
 	;; C      specific settings
 	(setq-default c-basic-offset 4)
 	(setq-default c-ts-mode-indent-offset 4)
@@ -37,9 +38,9 @@
 	(add-hook 'c-ts-mode-hook 'onncera-set-up-whitespace-handling)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	;; TODO - maybe can use "C-c q" to insert a tab anywhere regardless that is 4 spaces wide
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; TODO - check for TS specific settings
 	;; Python specific settings
 	(setq-default python-indent-offset 4)
 	(add-hook 'python-ts-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-standard-tab)))

@@ -20,6 +20,7 @@
 	(defvar onncera/a-map (make-sparse-keymap) "onncera C-c a prefix")
 	(global-set-key (kbd "C-c a") onncera/a-map)
 	(define-key onncera/a-map (kbd "a") #'completion-at-point)  ;; corfu provides the UI, command is builtin
+	(define-key onncera/a-map (kbd "b") #'onncera-standard-tab)
 
 	;; example for non builtin commands
 	;; b - (reserved, example only, uncomment + fill in when needed)
