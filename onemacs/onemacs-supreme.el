@@ -3,7 +3,15 @@
 
 	;; even though we name the file "supreme" this is only meant for theme settings
 	;; cool themes:
-	;; - doom-badger , nvim-dark , onncera-dark , pixel-themes-alia16 , standard-dark , turbo-c
+	;; - doom-badger
+	;; - doom-homage-black
+	;; - doom-monokai-pro
+	;; - doom-monokai-spectrum
+	;; - nvim-dark
+	;; - onncera-dark
+	;; - pixel-themes-alia16
+	;; - standard-dark
+	;; - turbo-c
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		(use-package leuven-theme :ensure t :defer t) (use-package ef-themes       :ensure t :defer t)
@@ -34,7 +42,7 @@
 
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
-							(load-theme 'onncera-dark t)
+							(load-theme 'doom-monokai-pro t)
 
 						)
 		)
