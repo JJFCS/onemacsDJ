@@ -3,15 +3,26 @@
 
 	;; even though we name the file "supreme" this is only meant for theme settings
 	;; cool themes:
+	;; - doom-acario-dark
 	;; - doom-badger
 	;; - doom-homage-black
+	;; - doom-ir-black
+	;; - doom-meltbus
 	;; - doom-monokai-pro
 	;; - doom-monokai-spectrum
+	;; - doom-plain-dark
+	;; - doric-cherry
+	;; - doric-dark
+	;; - gruber-darker
 	;; - nvim-dark
 	;; - onncera-dark
 	;; - pixel-themes-alia16
 	;; - standard-dark
 	;; - turbo-c
+	;; - tango-dark
+	;; - tsdh-dark
+	;; - wheatgrass
+	;; - wombat
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		(use-package leuven-theme :ensure t :defer t) (use-package ef-themes       :ensure t :defer t)
@@ -42,7 +53,7 @@
 
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
-							(load-theme 'doom-monokai-pro t)
+							(load-theme 'gruber-darker t)
 
 						)
 		)

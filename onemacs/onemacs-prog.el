@@ -34,7 +34,11 @@
 	;; C      specific settings
 	(setq-default c-basic-offset 4)
 	(setq-default c-ts-mode-indent-offset 4)
-	(add-hook 'c-ts-mode-hook (lambda () (local-set-key (kbd "TAB") #'onncera-standard-tab)))
+	(add-hook 'c-ts-mode-hook (lambda ()
+			(setq-local indent-tabs-mode nil) 
+			(local-set-key (kbd "TAB") #'onncera-standard-tab)
+		)
+	)
 	(add-hook 'c-ts-mode-hook 'onncera-set-up-whitespace-handling)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
