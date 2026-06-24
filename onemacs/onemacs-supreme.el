@@ -15,7 +15,8 @@
 	;; - doric-dark
 	;; - gruber-darker
 	;; - nvim-dark
-	;; - onncera-dark
+	;; - onncera-dark               (NOTE - may need to update every once in awhile - custom made theme)
+	;; - onncera-tango-dark         (NOTE - may need to update every once in awhile - custom made theme)
 	;; - pixel-themes-alia16
 	;; - standard-dark
 	;; - turbo-c
@@ -53,7 +54,7 @@
 
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
-							(load-theme 'gruber-darker t)
+							(load-theme 'onncera-tango-dark t)
 
 						)
 		)
