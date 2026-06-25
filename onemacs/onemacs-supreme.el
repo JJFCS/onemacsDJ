@@ -54,7 +54,7 @@
 
 		(add-hook 'window-setup-hook	(lambda ()
 		(run-with-idle-timer 0 nil	(lambda ()
-							(load-theme 'onncera-tango-dark t)
+							(load-theme 'onncera-jetbrains-darcula t)
 
 						)
 		)
