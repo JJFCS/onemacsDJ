@@ -28,14 +28,14 @@
 	(accent             "#ffffff")
 	(mode-line-bg       "#3c3f41")
 	(mode-line-bg-dark  "#2c2f31")
-	(line-num           "#606366")
+	(line-num           "#52494e")  ;; gruber-darker bg+4
 	(builtin            "#c57825")
 	(keyword            "#c57825")
 	(const              "#9676ac")
 	(comment            "#8a4235")  ;; exquisite-corpse red
-	(doc                "#5e8759")
+	(doc                "#5e8759")  ;; green for docstrings - TODO not working as intended in python files
 	(func               "#ffc66d")
-	(str                "#5e8759")
+	(str                "#ffdd33")  ;; gruber-darker yellow for strings
 	(type               "#c57825")
 	(var                "#9676ac")
 	(warning            "#990000")
@@ -53,7 +53,7 @@
 
 	`(default                                  ((,class (:background ,bg1 :foreground ,fg1))))
 	`(font-lock-builtin-face                   ((,class (:foreground ,builtin))))
-	`(font-lock-comment-face                   ((,class (:foreground ,comment))))  ;; italic removed too
+	`(font-lock-comment-face                   ((,class (:foreground ,comment))))
 	`(font-lock-negation-char-face             ((,class (:foreground ,const))))
 	`(font-lock-reference-face                 ((,class (:foreground ,const))))
 	`(font-lock-constant-face                  ((,class (:foreground ,const))))
@@ -84,8 +84,8 @@
 	`(warning                                  ((,class (:foreground ,jb-magenta))))
 	`(success                                  ((,class (:foreground ,jb-bluegreen))))
 	`(dired-directory                          ((t (:inherit (font-lock-keyword-face)))))
-	`(line-number                              ((,class (:foreground ,line-num :background ,bg1))))
-	`(line-number-current-line                 ((,class (:foreground ,fg2 :background ,bg1 :weight bold))))
+	`(line-number                              ((,class (:inherit default :foreground ,line-num :background ,bg1))))
+	`(line-number-current-line                 ((,class (:inherit line-number :foreground "#ffdd33" :weight bold))))
 	`(mode-line                                ((,class (:bold nil :foreground ,fg4 :background ,mode-line-bg))))
 	`(mode-line-inactive                       ((,class (:bold nil :foreground ,fg1 :background ,mode-line-bg-dark))))
 	`(mode-line-buffer-id                      ((,class (:bold nil :foreground ,accent :background nil))))
