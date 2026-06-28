@@ -21,6 +21,7 @@
 	(global-set-key (kbd "C-c a") onncera/a-map)
 	(define-key onncera/a-map (kbd "a") #'completion-at-point)  ;; corfu provides the UI, command is builtin
 	(define-key onncera/a-map (kbd "b") #'onncera-standard-tab)
+	(define-key onncera/a-map (kbd "c") #'view-lossage)
 
 	;; example for non builtin commands
 	;; b - (reserved, example only, uncomment + fill in when needed)
