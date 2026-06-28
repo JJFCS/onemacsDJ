@@ -33,7 +33,7 @@
 	(keyword            "#c57825")
 	(const              "#9676ac")
 	(comment            "#8a4235")  ;; exquisite-corpse red
-	(doc                "#5e8759")  ;; green for docstrings - TODO not working as intended in python files
+	(doc                "#5e8759")  ;; JetBrains green for docstrings
 	(func               "#ffc66d")
 	(str                "#ffdd33")  ;; gruber-darker yellow for strings
 	(type               "#c57825")
@@ -57,10 +57,11 @@
 	`(font-lock-negation-char-face             ((,class (:foreground ,const))))
 	`(font-lock-reference-face                 ((,class (:foreground ,const))))
 	`(font-lock-constant-face                  ((,class (:foreground ,const))))
-	`(font-lock-doc-face                       ((,class (:foreground ,doc))))
+	`(font-lock-doc-face                       ((,class (:foreground ,doc :slant normal))))     ;; JetBrains green — docstrings
+	`(font-lock-doc-markup-face                ((,class (:foreground ,doc :slant normal))))     ;; treesit assigns docstrings here in python-ts-mode
 	`(font-lock-function-name-face             ((,class (:foreground ,func :bold nil))))
 	`(font-lock-keyword-face                   ((,class (:bold nil :foreground ,keyword))))
-	`(font-lock-string-face                    ((,class (:foreground ,str))))
+	`(font-lock-string-face                    ((,class (:foreground ,str))))                   ;; yellow — regular strings only
 	`(font-lock-type-face                      ((,class (:foreground ,type))))
 	`(font-lock-variable-name-face             ((,class (:foreground ,var))))
 	`(font-lock-warning-face                   ((,class (:foreground ,jb-red :background ,bg2))))
@@ -203,9 +204,10 @@
 	`(tab-bar                                  ((t (:background ,bg3))))
 	`(tab-bar-tab                              ((t (:foreground ,fg2 :background ,bg5 :box (:color ,bg4)))))
 	`(tab-bar-tab-inactive                     ((t (:foreground ,fg1 :background ,bg2 :box (:color ,bg4)))))
-	`(git-gutter:added                         ((t (:background ,jb-g :foreground ,jb-g :weight normal))))
-	`(git-gutter:deleted                       ((t (:background ,jb-r :foreground ,jb-r :weight normal))))
-	`(git-gutter:modified                      ((t (:background ,jb-y :foreground ,jb-y :weight normal))))
+	;; GIT GUTTER — foreground holds the glyph color, background is transparent so the sign is visible
+	`(git-gutter:added                         ((t (:background ,bg1 :foreground ,jb-g :weight bold))))
+	`(git-gutter:deleted                       ((t (:background ,bg1 :foreground ,jb-r :weight bold))))
+	`(git-gutter:modified                      ((t (:background ,bg1 :foreground ,jb-y :weight bold))))
 	`(diff-hl-insert                           ((t (:background ,jb-g :foreground ,jb-g))))
 	`(diff-hl-delete                           ((t (:background ,jb-r :foreground ,jb-r))))
 	`(diff-hl-change                           ((t (:background ,jb-y :foreground ,jb-y))))
