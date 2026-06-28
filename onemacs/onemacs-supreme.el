@@ -5,15 +5,19 @@
 	;; cool themes:
 	;; - doom-acario-dark
 	;; - doom-badger
+	;; - doom-fairy-floss
 	;; - doom-homage-black
 	;; - doom-ir-black
 	;; - doom-meltbus
 	;; - doom-monokai-pro
 	;; - doom-monokai-spectrum
+	;; - doom-old-hope
 	;; - doom-plain-dark
+	;; - doom-spacegrey
 	;; - doric-cherry
 	;; - doric-dark
 	;; - gruber-darker
+	;; - nerv-theme                 (TODO - incorporate some things into my onncera-jetbrains-darcula theme)
 	;; - nvim-dark
 	;; - onncera-dark               (NOTE - may need to update every once in awhile - custom made theme)
 	;; - onncera-jetbrains-darcula  (NOTE - may need to update every once in awhile - custom made theme)
@@ -42,6 +46,11 @@
 
 		(use-package pixel-themes
 			:vc (:url "https://github.com/lucasobx/pixel-themes"
+			:rev :newest)
+		)
+
+		(use-package nerv-theme
+			:vc (:url "https://github.com/Senka07/nerv_theme.el"
 			:rev :newest)
 		)
 
