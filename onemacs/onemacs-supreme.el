@@ -16,6 +16,7 @@
 	;; - gruber-darker
 	;; - nvim-dark
 	;; - onncera-dark               (NOTE - may need to update every once in awhile - custom made theme)
+	;; - onncera-jetbrains-darcula  (NOTE - may need to update every once in awhile - custom made theme)
 	;; - onncera-tango-dark         (NOTE - may need to update every once in awhile - custom made theme)
 	;; - pixel-themes-alia16
 	;; - standard-dark

@@ -7,45 +7,45 @@
 	(
 
 	(class              '((class color) (min-colors 89)))
-	(subtle             "#282828")  ;; whitespace dots — barely above bg (gruber-darker bg+1)
-	(fg0                "#8997a6")
-	(fg1                "#a9b7c6")
-	(fg2                "#cccccc")
-	(fg3                "#e8e8e8")
-	(fg4                "#fafafa")
+	(subtle             "#282828")  ;; for whitespace dots
+	(fg0                "#8997A6")
+	(fg1                "#A9B7C6")
+	(fg2                "#CCCCCC")
+	(fg3                "#E8E8E8")
+	(fg4                "#FAFAFA")
 	(bg0                "#111111")
-	(bg1                "#181818")  ;; gruber-darker bg
+	(bg1                "#181818")
 	(bg2                "#303030")
 	(bg3                "#313335")
-	(bg4                "#383c3f")
+	(bg4                "#383C3F")
 	(bg5                "#515757")
 	(bg-hl              "#214283")
-	(jb-r               "#ac0909")
-	(jb-g               "#36a546")
-	(jb-y               "#f1eb7f")
-	(key2               "#c57825")
-	(key3               "#d0d0ff")
-	(accent             "#ffffff")
-	(mode-line-bg       "#3c3f41")
-	(mode-line-bg-dark  "#2c2f31")
-	(line-num           "#52494e")  ;; gruber-darker bg+4
-	(builtin            "#c57825")
-	(keyword            "#c57825")
-	(const              "#9676ac")
-	(comment            "#8a4235")  ;; exquisite-corpse red
-	(doc                "#5e8759")  ;; JetBrains green for docstrings
-	(func               "#ffc66d")
-	(str                "#ffdd33")  ;; gruber-darker yellow for strings
-	(type               "#c57825")
-	(var                "#9676ac")
+	(jb-r               "#AC0909")
+	(jb-g               "#36A546")
+	(jb-y               "#F1EB7F")
+	(key2               "#C57825")
+	(key3               "#D0D0FF")
+	(accent             "#FFFFFF")
+	(mode-line-bg       "#3C3F41")
+	(mode-line-bg-dark  "#2C2F31")
+	(line-num           "#52494E")
+	(builtin            "#C57825")
+	(keyword            "#C57825")
+	(const              "#9676AC")
+	(comment            "#8A4235")  ;; exquisite-corpse red
+	(doc                "#5E8759")  ;; JetBrains green for docstrings
+	(func               "#FFC66D")
+	(str                "#FFDD33")  ;; gruber-darker yellow for strings
+	(type               "#C57825")
+	(var                "#9676AC")
 	(warning            "#990000")
-	(jb-yellow          "#ffc66d")
+	(jb-yellow          "#FFC66D")
 	(jb-bluegreen       "#318495")
-	(jb-magenta         "#9676ac")
-	(jb-orange          "#c57825")
-	(jb-red             "#8c0909")
-	(jb-blue            "#7ca8c6")
-	(jb-green           "#5e8759")
+	(jb-magenta         "#9676AC")
+	(jb-orange          "#C57825")
+	(jb-red             "#8C0909")
+	(jb-blue            "#7CA8C6")
+	(jb-green           "#5E8759")
 
 	)
 
@@ -57,11 +57,11 @@
 	`(font-lock-negation-char-face             ((,class (:foreground ,const))))
 	`(font-lock-reference-face                 ((,class (:foreground ,const))))
 	`(font-lock-constant-face                  ((,class (:foreground ,const))))
-	`(font-lock-doc-face                       ((,class (:foreground ,doc :slant normal))))     ;; JetBrains green — docstrings
-	`(font-lock-doc-markup-face                ((,class (:foreground ,doc :slant normal))))     ;; treesit assigns docstrings here in python-ts-mode
+	`(font-lock-doc-face                       ((,class (:foreground ,doc :slant normal))))
+	`(font-lock-doc-markup-face                ((,class (:foreground ,doc :slant normal))))  ;; treesit assigns docstrings here in python-ts-mode
 	`(font-lock-function-name-face             ((,class (:foreground ,func :bold nil))))
 	`(font-lock-keyword-face                   ((,class (:bold nil :foreground ,keyword))))
-	`(font-lock-string-face                    ((,class (:foreground ,str))))                   ;; yellow — regular strings only
+	`(font-lock-string-face                    ((,class (:foreground ,str))))
 	`(font-lock-type-face                      ((,class (:foreground ,type))))
 	`(font-lock-variable-name-face             ((,class (:foreground ,var))))
 	`(font-lock-warning-face                   ((,class (:foreground ,jb-red :background ,bg2))))
@@ -204,7 +204,6 @@
 	`(tab-bar                                  ((t (:background ,bg3))))
 	`(tab-bar-tab                              ((t (:foreground ,fg2 :background ,bg5 :box (:color ,bg4)))))
 	`(tab-bar-tab-inactive                     ((t (:foreground ,fg1 :background ,bg2 :box (:color ,bg4)))))
-	;; GIT GUTTER — foreground holds the glyph color, background is transparent so the sign is visible
 	`(git-gutter:added                         ((t (:background ,bg1 :foreground ,jb-g :weight bold))))
 	`(git-gutter:deleted                       ((t (:background ,bg1 :foreground ,jb-r :weight bold))))
 	`(git-gutter:modified                      ((t (:background ,bg1 :foreground ,jb-y :weight bold))))
@@ -214,7 +213,6 @@
 	`(hl-todo                                  ((t (:inverse-video t))))
 	`(highlight-numbers-number                 ((t (:foreground ,jb-blue))))
 
-	;; WHITESPACE OVERRIDES
 	`(whitespace-space            ((t (:background ,bg1 :foreground ,subtle))))
 	`(whitespace-tab              ((t (:background ,bg1 :foreground ,subtle))))
 	`(whitespace-hspace           ((t (:background ,bg1 :foreground ,subtle))))
